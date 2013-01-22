@@ -1,0 +1,5 @@
+The file faithful.txt contains the Old Faithful dataset used in "Introduction
+to Pattern Recognition and Machine Learning" by Christopher Bishop. It contains
+272 observations of eruptions, giving the duration in minutes and the time until
+the next eruption. Obtained from:
+http://research.microsoft.com/en-us/um/people/cmbishop/PRML/webdatasets/faithful.txt
