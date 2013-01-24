@@ -54,12 +54,12 @@ class KMeans(object):
         return self.init_centers
 
     def _check_fitted(self):
-        if not hasattr(self, 'cluster_centers_'):
+        if not hasattr(self, 'centers_'):
             raise AttributeError('Model has not been trained yet.')
 
     def _check_test_data(self, X):
         _, n_dims = X.shape
-        n_dims_exp = self.cluster_centers_.shape[1]
+        n_dims_exp = self.centers_.shape[1]
         if not n_dims == n_dims_exp:
             raise ValueError('Incorrect number of features. '
                              'Data has {0} features, expected {1}.'.format(n_dims,
@@ -96,7 +96,7 @@ class KMeans(object):
 
             if np.sum((centers_old - centers) ** 2) < self.tol:
                 break
-        self.cluster_centers_ = centers
+        self.centers_ = centers
         self.labels_ = labels
         self.inertia_ = inertia
         return self
@@ -116,7 +116,7 @@ class KMeans(object):
         """
         self._check_fitted()
         X = self._check_test_data(X)
-        return self._e_step(X, self.labels_)[0]
+        return self._e_step(X, self.centers_)[0]
 
     def _e_step(self, X, centers, distances=None):
         """E-step, assign labels to each data point
